@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bomb Countdown Timer</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body,
+    html {
+      background-color: #b45d63;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .countdown-timer {
+      font-size: 7em;
+      font-weight: bold;
+      color: #f9041d;
+    }
+    .inputs_bar{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .inputs_bar button{
+      margin: 5% 0%;
+    }
+    .inputs_bar input{
+      margin: 3% 0%;
+    }
+    .hero{
+      position: relative;
+      top: 0;
+      height: 30rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid bg-dark hero text-center">
+
+    <div class="countdown-timer" id="countdown-timer"></div>
+
+  </div>
+  <div class="container-fluid inputs_bar">
+
+    <div class="input-group input-group-lg">
+      
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" readonly value="iKZ/YVQhkd8MvlVVRw+5EKL3SWwOS8UKFmTtdfH9KZA82DuiV5hZe1EW783YNYWaCW5VhEaSzbcnk67ZlZTw19pT3vgRbt4F3C2ibGiITyI=" >
+    </div>
+    <div class="input-group input-group-lg">
+      <input id="phrase" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    </div>
+
+    <button class="btn btn-danger" id="decrypt">DECRYPT </button>
+  </div>
+  <div class="container-fluid inputs_bar">
+
+    <div class="input-group input-group-lg">
+      
+      <input type="text" id="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    </div>
+    
+
+    <button class="btn btn-danger" id="Diffuse">DIFFUSE</button>
+  </div>
+
+  <script>
+    var countdownTimer = document.getElementById("countdown-timer");
+    const decrupt = document.getElementById("decrypt")
+    const Diffuse = document.getElementById("Diffuse")
+    var diffused = false;
+    var hours = 2
+    var minutes = 59
+    var seconds = 60
+    var counter = function () {
+      seconds--
+      if (seconds === 0) {
+        minutes--
+        seconds = 60
+      }
+      if (minutes === 0) {
+        hours--
+        minutes = 60
+      }
+      
+
+      countdownTimer.innerHTML = ` 0${hours} : ${minutes}: ${seconds}`;
+    }
+
+    var startcounter = setInterval(counter,1000) 
+    decrupt.addEventListener('click',()=>{
+      
+      document.querySelector("#phrase").value.toLowerCase()==="homo sapiens are destructive by nature"
+      document.querySelector("#password").value="I like you. When the world is mine, your death will be quick and painless."
+    })
+    Diffuse.addEventListener('click',()=>{
+      if(document.querySelector("#password").value!="" && document.querySelector("#password").value==="I like you. When the world is mine, your death will be quick and painless." ){
+        diffused=true
+        startTimer()
+      }
+      
+    })
+    
+    const startTimer=()=>{
+      if(diffused){
+        countdownTimer.innerHTML="DIFFUSED"
+        clearInterval(startcounter)
+        return
+      }
+     
+    }
+    startTimer()
+    
+  </script>
+</body>
+
+</html>
